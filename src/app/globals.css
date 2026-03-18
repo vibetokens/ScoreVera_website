@@ -487,3 +487,12 @@ img.logo-img{height:32px!important;max-height:32px!important;width:auto!importan
 
 /* ===== BLOG SIDEBAR ===== */
 @media(max-width:899px){.blog-sidebar{display:none!important}}
+
+/* ===== MOBILE STICKY BAR ===== */
+/* Hide on desktop — only show on mobile */
+.mobile-bar{display:none}
+@media(max-width:767px){
+  .mobile-bar{display:flex}
+  /* Add bottom padding so page content isn't hidden behind bar */
+  body{padding-bottom:72px}
+}
