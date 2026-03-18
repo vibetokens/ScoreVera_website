@@ -1,162 +1,125 @@
 const steps = [
   {
-    step: "01",
-    title: "Connect Your Credit",
-    description:
-      "Securely link your credit file in under two minutes. We pull your full reports from all three bureaus via read-only, bank-grade encrypted connections — no password sharing required.",
-    detail: "Equifax · Experian · TransUnion",
-    color: "#c9a55a",
+    num: "01",
+    tag: "Input",
+    title: "Upload your credit report",
+    desc: "Pull your report from AnnualCreditReport.com — all three bureaus. Upload the PDF to ScoreVera. Nothing is stored long-term.",
+    delay: "",
+    vis: (
+      <div className="sv-in">
+        <span className="sv-lbl">system output</span>
+        <span style={{ color: "var(--cyan)" }}>✓ Report parsed</span>
+        <br />
+        <span style={{ color: "var(--t3)" }}>&nbsp; Accounts found: 23</span>
+        <br />
+        <span style={{ color: "var(--gold)" }}>&nbsp; Flagged: 7 items</span>
+      </div>
+    ),
   },
   {
-    step: "02",
-    title: "Get Your Vera Score™",
-    description:
-      "Our proprietary model scores your credit profile across 22 dimensions — not just the number, but the why behind it. Payment history, utilization, mix, age, inquiries — all ranked by impact.",
-    detail: "22-factor analysis · Ready in 90 seconds",
-    color: "#3b82f6",
+    num: "02",
+    tag: "Analysis",
+    title: "See what needs action",
+    desc: "The system identifies negative items — collections, charge-offs, late payments, errors — and categorizes them by type and actionability.",
+    delay: "d1",
+    vis: (
+      <div className="sv-in">
+        <span className="sv-lbl">item review</span>
+        <span style={{ color: "var(--red)" }}>✗ Collection — $1,240</span>
+        <br />
+        <span style={{ color: "var(--red)" }}>✗ Charge-Off — CapOne</span>
+        <br />
+        <span style={{ color: "var(--gold)" }}>! Late Pay ×3 — Chase</span>
+        <br />
+        <span style={{ color: "var(--green)" }}>✓ Auto Loan — OK</span>
+      </div>
+    ),
   },
   {
-    step: "03",
-    title: "Receive Your Action Plan",
-    description:
-      "ScoreVera generates a ranked list of actions specific to your profile. Each task shows the exact point impact, the estimated time to complete, and step-by-step instructions in plain English.",
-    detail: "Ranked by ROI · Personalized to you",
-    color: "#c9a55a",
+    num: "03",
+    tag: "Generation",
+    title: "Generate the right letter",
+    desc: "ScoreVera generates FCRA § 611-compliant letters for each selected item — matched to the correct bureau, with the right legal language for that dispute type.",
+    delay: "d2",
+    vis: (
+      <div className="sv-in">
+        <span className="sv-lbl">letter engine</span>
+        <span style={{ color: "var(--blue-lo)" }}>→ FCRA § 611</span>
+        <br />
+        <span style={{ color: "var(--blue-lo)" }}>→ Bureau: Equifax</span>
+        <br />
+        <span style={{ color: "var(--blue-lo)" }}>→ Type: Verification</span>
+        <br />
+        <span style={{ color: "var(--green)" }}>✓ Ready to export</span>
+      </div>
+    ),
   },
   {
-    step: "04",
-    title: "Track Progress Weekly",
-    description:
-      "As you complete tasks, your dashboard updates in real time. Weekly score syncs show you exactly how each action moved your number. Dispute automation handles bureau errors for you.",
-    detail: "Weekly syncs · Automated disputes",
-    color: "#3b82f6",
+    num: "04",
+    tag: "Execution",
+    title: "Send it",
+    desc: "Print and mail via certified mail with return receipt. You stay in control. ScoreVera gives you everything you need to do it right.",
+    delay: "d3",
+    vis: (
+      <div className="sv-in">
+        <span className="sv-lbl">send protocol</span>
+        <span style={{ color: "var(--t2)" }}>Method: Certified Mail</span>
+        <br />
+        <span style={{ color: "var(--cyan)" }}>Track #: USPS logged</span>
+        <br />
+        <span style={{ color: "var(--green)" }}>Clock starts: Day 1</span>
+      </div>
+    ),
+  },
+  {
+    num: "05",
+    tag: "Tracking",
+    title: "Track the 30-day timeline",
+    desc: "Under FCRA § 611, bureaus must complete investigations within 30 days. ScoreVera tracks each round, alerts you when to follow up, and guides the next step.",
+    delay: "d4",
+    vis: (
+      <div className="sv-in">
+        <span className="sv-lbl">investigation timer</span>
+        <span style={{ color: "var(--gold)" }}>Day 23 / 30</span>
+        <br />
+        <span style={{ color: "var(--t2)" }}>Status: Under review</span>
+        <br />
+        <span style={{ color: "var(--cyan)" }}>Next: Await response</span>
+        <br />
+        <span style={{ color: "var(--t3)" }}>Escalation: Day 31</span>
+      </div>
+    ),
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section className="section-pad px-6 md:px-8" id="how-it-works">
-      <div className="mx-auto max-w-7xl">
-        {/* Header */}
-        <div className="mb-16 text-center">
-          <div
-            className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest"
-            style={{ color: "#c9a55a" }}
-          >
-            The Process
-          </div>
-          <h2
-            className="text-4xl font-bold md:text-5xl lg:text-6xl"
-            style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
-          >
-            From confused
-            <br />
-            <span style={{ color: "#c9a55a" }}>to credit-confident</span>
-            <br />
-            in four steps.
-          </h2>
+    <section id="how" className="section">
+      <div className="wrap">
+        <div className="sh rv">
+          <span className="eyebrow">Process</span>
+          <h2 className="h-xl">How it works.</h2>
+          <p className="body-lg">
+            You do not need to become an FCRA expert. You need a system that prevents the mistakes
+            that make disputes fail.
+          </p>
         </div>
 
-        {/* Steps */}
-        <div className="relative">
-          {/* Connector line (desktop) */}
-          <div
-            className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 hidden lg:block"
-            style={{ backgroundColor: "#1e2738" }}
-            aria-hidden="true"
-          />
-
-          <div className="space-y-6 lg:space-y-0">
-            {steps.map((step, i) => (
-              <div
-                key={step.step}
-                className={`relative flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center ${
-                  i % 2 === 1 ? "lg:direction-rtl" : ""
-                }`}
-              >
-                {/* Content */}
-                <div
-                  className={`${i % 2 === 1 ? "lg:order-2" : "lg:order-1"}`}
-                >
-                  <div
-                    className="rounded-2xl p-8 transition-all hover:-translate-y-0.5"
-                    style={{
-                      backgroundColor: "#0e1117",
-                      border: "1px solid #1e2738",
-                    }}
-                  >
-                    <div
-                      className="mb-4 text-sm font-bold tracking-widest"
-                      style={{
-                        fontFamily: "var(--font-jetbrains), monospace",
-                        color: step.color,
-                      }}
-                    >
-                      STEP {step.step}
-                    </div>
-                    <h3
-                      className="mb-3 text-2xl font-bold text-white md:text-3xl"
-                      style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
-                    >
-                      {step.title}
-                    </h3>
-                    <p className="mb-5 leading-relaxed" style={{ color: "#9ca3af" }}>
-                      {step.description}
-                    </p>
-                    <span
-                      className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold"
-                      style={{
-                        backgroundColor: `${step.color}15`,
-                        color: step.color,
-                        border: `1px solid ${step.color}30`,
-                        fontFamily: "var(--font-jetbrains), monospace",
-                      }}
-                    >
-                      {step.detail}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Step indicator (desktop) */}
-                <div
-                  className={`hidden lg:flex items-center justify-center ${
-                    i % 2 === 1 ? "lg:order-1" : "lg:order-2"
-                  }`}
-                >
-                  <div
-                    className="relative flex h-20 w-20 items-center justify-center rounded-full text-2xl font-bold z-10"
-                    style={{
-                      background: `linear-gradient(135deg, ${step.color}20, ${step.color}10)`,
-                      border: `2px solid ${step.color}50`,
-                      fontFamily: "var(--font-fraunces), Georgia, serif",
-                      color: step.color,
-                      boxShadow: `0 0 30px ${step.color}20`,
-                    }}
-                  >
-                    {step.step}
-                  </div>
-                </div>
+        <div className="steps">
+          {steps.map((step, i) => (
+            <div className={`step rv${step.delay ? ` ${step.delay}` : ""}`} key={step.num}>
+              <div className="step-spine">
+                <div className="step-circ">{step.num}</div>
+                {i < steps.length - 1 && <div className="step-line" />}
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div className="mt-16 text-center">
-          <a
-            href="#pricing"
-            className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-bold transition-all hover:scale-105"
-            style={{
-              background: "linear-gradient(135deg, #c9a55a 0%, #a8843c 100%)",
-              color: "#07090d",
-              boxShadow: "0 0 30px rgba(201,165,90,0.3)",
-            }}
-          >
-            Start in Two Minutes
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
+              <div className="step-content">
+                <span className="step-tag">{step.tag}</span>
+                <div className="step-title">{step.title}</div>
+                <p className="step-desc">{step.desc}</p>
+              </div>
+              <div className="step-vis">{step.vis}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

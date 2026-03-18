@@ -6,7 +6,7 @@ const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "600"],
 });
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -20,19 +20,14 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500"],
 });
 
 export const metadata: Metadata = {
-  title: "ScoreVera — Credit Intelligence for Modern Borrowers",
+  title: "ScoreVera — Credit Dispute System That Actually Works",
   description:
-    "ScoreVera gives you a clear, actionable path to a higher credit score — pulling data from all three bureaus, translating it into plain English, and showing you exactly what to do next.",
-  openGraph: {
-    title: "ScoreVera — Credit Intelligence for Modern Borrowers",
-    description:
-      "Know your score. Own your future. ScoreVera turns confusing bureau data into a precise improvement plan.",
-    type: "website",
-  },
+    "Stop guessing what to do with your credit. FCRA-compliant dispute automation. Know what to send. Know when. Know what happens next.",
+  themeColor: "#07090D",
 };
 
 export default function RootLayout({
@@ -42,9 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${fraunces.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} antialiased`}
-      >
+      <body className={`${fraunces.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable}`}>
         {children}
       </body>
     </html>

@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import BureauStrip from "@/components/BureauStrip";
 import Founder from "@/components/Founder";
@@ -11,25 +11,27 @@ import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
+import RevealObserver from "@/components/RevealObserver";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <Header />
       <main>
         <Hero />
         <BureauStrip />
         <Founder />
         <Pillars />
         <HowItWorks />
-        <ProcessCompare />
         <Objections />
+        <ProcessCompare />
         <Testimonials />
         <Pricing />
         <FAQ />
         <FinalCTA />
       </main>
       <Footer />
+      <RevealObserver />
     </>
   );
 }

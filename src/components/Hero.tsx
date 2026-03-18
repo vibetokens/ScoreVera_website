@@ -1,166 +1,245 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+
 export default function Hero() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const typedRef = useRef<HTMLSpanElement>(null);
+  const termBodyRef = useRef<HTMLDivElement>(null);
+
+  // Canvas dot grid
+  useEffect(() => {
+    const _cv = canvasRef.current;
+    if (!_cv) return;
+    const c: HTMLCanvasElement = _cv;
+    const _ctx = c.getContext("2d");
+    if (!_ctx) return;
+    const ctx: CanvasRenderingContext2D = _ctx;
+
+    let W = 0, H = 0;
+    interface Dot { x: number; y: number; b: number; s: number; p: number; }
+    let dots: Dot[] = [];
+    let raf = 0;
+    const SP = 36;
+
+    function resize() {
+      W = c.width = c.offsetWidth;
+      H = c.height = c.offsetHeight;
+      dots = [];
+      for (let r = 0; r <= Math.ceil(H / SP); r++)
+        for (let col = 0; col <= Math.ceil(W / SP); col++)
+          dots.push({ x: col * SP, y: r * SP, b: Math.random() * 0.22 + 0.04, s: Math.random() * 0.6 + 0.3, p: Math.random() * Math.PI * 2 });
+    }
+
+    let t = 0;
+    function frame() {
+      ctx.clearRect(0, 0, W, H);
+      t += 0.008;
+      dots.forEach((d) => {
+        const op = d.b * (0.4 + 0.6 * Math.sin(t * d.s + d.p));
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, 1, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(59,130,246,${op.toFixed(3)})`;
+        ctx.fill();
+      });
+      raf = requestAnimationFrame(frame);
+    }
+
+    resize();
+    frame();
+
+    let rt: ReturnType<typeof setTimeout>;
+    const handleResize = () => {
+      clearTimeout(rt);
+      rt = setTimeout(() => { cancelAnimationFrame(raf); resize(); frame(); }, 120);
+    };
+    const handleVisibility = () => (document.hidden ? cancelAnimationFrame(raf) : frame());
+
+    window.addEventListener("resize", handleResize, { passive: true });
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", handleResize);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, []);
+
+  // Terminal typewriter
+  useEffect(() => {
+    const _typed = typedRef.current;
+    const _body = termBodyRef.current;
+    if (!_typed || !_body) return;
+    const typedEl: HTMLElement = _typed;
+    const body: HTMLDivElement = _body;
+
+    let cancelled = false;
+    const nodes: HTMLElement[] = [];
+    const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+
+    async function type(el: HTMLElement, text: string, d = 52) {
+      for (let i = 0; i <= text.length; i++) {
+        if (cancelled) return;
+        el.textContent = text.slice(0, i);
+        await sleep(d + (Math.random() * 22 - 11));
+      }
+    }
+
+    async function addLine(html: string, delay = 260) {
+      await sleep(delay);
+      if (cancelled) return;
+      const s = document.createElement("span");
+      s.className = "tl";
+      s.innerHTML = html;
+      s.style.cssText = "opacity:0;transition:opacity .22s;display:block;";
+      const cursor = body.querySelector("#sv-cursor");
+      body.insertBefore(s, cursor ? cursor.closest(".tl") : null);
+      nodes.push(s);
+      requestAnimationFrame(() => { s.style.opacity = "1"; });
+      await sleep(250);
+    }
+
+    function addScore() {
+      const d = document.createElement("div");
+      d.className = "score-row";
+      d.innerHTML =
+        '<span class="sc-n sc-before">559</span><span class="sc-arrow">→</span><span class="sc-n sc-after">716</span><span class="sc-delta">+157 pts · 30 days</span>';
+      d.style.cssText = "opacity:0;transition:opacity .4s;";
+      body.appendChild(d);
+      nodes.push(d);
+      requestAnimationFrame(() => { d.style.opacity = "1"; });
+    }
+
+    function clear() {
+      nodes.forEach((n) => n.parentNode?.removeChild(n));
+      nodes.length = 0;
+    }
+
+    const SEQ: Array<{ t: string; text?: string; html?: string; ms?: number }> = [
+      { t: "cmd", text: "scorevera analyze --report credit.pdf" },
+      { t: "out", html: '<span class="to"><span class="ts">✓</span> Report parsed — 23 accounts</span>' },
+      { t: "out", html: '<span class="to"><span class="tg">→</span> 7 items flagged</span>' },
+      { t: "out", html: '<span class="to"><span class="tc-terminal">⊳</span> Building dispute sequence...</span>' },
+      { t: "gap", ms: 500 },
+      { t: "cmd", text: "scorevera generate --bureau equifax --type collection" },
+      { t: "out", html: '<span class="to"><span class="ts">✓</span> FCRA § 611 letter generated</span>' },
+      { t: "out", html: '<span class="to"><span style="color:var(--blue-lo)">→</span> Investigation timer: Day 1</span>' },
+      { t: "gap", ms: 400 },
+      { t: "score" },
+      { t: "gap", ms: 2200 },
+      { t: "clear" },
+    ];
+
+    async function run(): Promise<void> {
+      await sleep(700);
+      let tgt: HTMLElement = typedEl;
+      for (const s of SEQ) {
+        if (cancelled) return;
+        if (s.t === "cmd" && s.text) {
+          await type(tgt, s.text);
+          if (cancelled) return;
+          const done = document.createElement("span");
+          done.className = "tl";
+          done.style.display = "block";
+          done.innerHTML = `<span class="tp">$ </span><span class="tc-terminal">${tgt.textContent}</span>`;
+          const cursor = body.querySelector("#sv-cursor");
+          body.insertBefore(done, cursor ? cursor.closest(".tl") : null);
+          nodes.push(done);
+          tgt.textContent = "";
+          await sleep(200);
+        } else if (s.t === "out" && s.html) {
+          await addLine(s.html);
+        } else if (s.t === "gap" && s.ms) {
+          await sleep(s.ms);
+        } else if (s.t === "score") {
+          addScore();
+          await sleep(200);
+        } else if (s.t === "clear") {
+          await sleep(600);
+          clear();
+          tgt = typedEl;
+          await sleep(300);
+        }
+      }
+      if (!cancelled) run();
+    }
+
+    run();
+    return () => { cancelled = true; };
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-24 pb-20 md:px-8 md:pt-32 md:pb-28">
-      {/* Background glow */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        aria-hidden="true"
-      >
-        <div
-          className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-20"
-          style={{
-            background: "radial-gradient(circle, #c9a55a 0%, transparent 70%)",
-            filter: "blur(80px)",
-          }}
-        />
-        <div
-          className="absolute right-0 bottom-0 w-[400px] h-[400px] rounded-full opacity-10"
-          style={{
-            background: "radial-gradient(circle, #3b82f6 0%, transparent 70%)",
-            filter: "blur(60px)",
-          }}
-        />
-        {/* Grid lines */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-5xl text-center">
-        {/* Eyebrow */}
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5"
-          style={{ borderColor: "rgba(201,165,90,0.3)", backgroundColor: "rgba(201,165,90,0.08)" }}
-        >
-          <span
-            className="h-1.5 w-1.5 rounded-full animate-pulse"
-            style={{ backgroundColor: "#c9a55a" }}
-          />
-          <span
-            className="text-xs font-semibold uppercase tracking-widest"
-            style={{ color: "#c9a55a" }}
-          >
-            Credit Intelligence Platform
-          </span>
-        </div>
-
-        {/* Headline */}
-        <h1
-          className="mb-6 text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl"
-          style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
-        >
-          Your credit score
-          <br />
-          <span
-            style={{
-              background: "linear-gradient(135deg, #c9a55a 0%, #ddb97a 50%, #c9a55a 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            is a solvable problem.
-          </span>
-        </h1>
-
-        {/* Subheadline */}
-        <p
-          className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed md:text-xl"
-          style={{ color: "#d1d5db" }}
-        >
-          ScoreVera reads your full credit report from all three bureaus, finds
-          every factor holding you back, and hands you a precise step-by-step
-          plan to raise your score — in plain English.
-        </p>
-
-        {/* CTAs */}
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <a
-            href="#pricing"
-            className="group flex items-center gap-2 rounded-full px-8 py-4 text-base font-bold transition-all duration-200 hover:scale-105"
-            style={{
-              background: "linear-gradient(135deg, #c9a55a 0%, #a8843c 100%)",
-              color: "#07090d",
-              boxShadow: "0 0 30px rgba(201,165,90,0.35), 0 4px 16px rgba(0,0,0,0.4)",
-            }}
-          >
-            See My Credit Plan
-            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
-          <a
-            href="#how-it-works"
-            className="flex items-center gap-2 rounded-full border px-8 py-4 text-base font-semibold transition-all duration-200 hover:bg-white/5"
-            style={{ borderColor: "#1e2738", color: "#d1d5db" }}
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Watch How It Works
-          </a>
-        </div>
-
-        {/* Social proof bar */}
-        <div className="mt-14 flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-10">
-          <div className="flex flex-col items-center sm:items-start">
-            <span
-              className="text-3xl font-bold"
-              style={{
-                fontFamily: "var(--font-fraunces), Georgia, serif",
-                color: "#c9a55a",
-              }}
-            >
-              47 pts
-            </span>
-            <span className="text-sm" style={{ color: "#6b7280" }}>
-              avg score increase in 90 days
-            </span>
-          </div>
-          <div className="hidden sm:block h-10 w-px" style={{ backgroundColor: "#1e2738" }} />
-          <div className="flex flex-col items-center sm:items-start">
-            <span
-              className="text-3xl font-bold"
-              style={{
-                fontFamily: "var(--font-fraunces), Georgia, serif",
-                color: "#c9a55a",
-              }}
-            >
-              12,400+
-            </span>
-            <span className="text-sm" style={{ color: "#6b7280" }}>
-              credit plans generated
-            </span>
-          </div>
-          <div className="hidden sm:block h-10 w-px" style={{ backgroundColor: "#1e2738" }} />
-          <div className="flex flex-col items-center sm:items-start">
-            <div className="flex items-center gap-1 mb-0.5">
-              {[1,2,3,4,5].map((i) => (
-                <svg key={i} className="w-4 h-4" viewBox="0 0 20 20" fill="#c9a55a">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
+    <section id="hero">
+      <canvas id="hero-canvas" ref={canvasRef} aria-hidden="true" />
+      <div className="hero-glow" aria-hidden="true" />
+      <div className="wrap">
+        <div className="hero-inner">
+          <div>
+            <div className="hero-badge">
+              <span className="badge-dot" />
+              FCRA § 611 Automation
             </div>
-            <span className="text-sm" style={{ color: "#6b7280" }}>
-              4.9/5 from 800+ reviews
-            </span>
+            <h1 className="h-hero hero-h1 rv">
+              Stop guessing<br />what to do with<br />
+              <em className="proof-i">your credit.</em>
+            </h1>
+            <p className="body-lg hero-sub rv d1">
+              Know what to send. Know when to send it. Know what happens next.
+              ScoreVera turns a confusing credit report into a structured, trackable process.
+            </p>
+            <div className="hero-acts btn-stack rv d2">
+              <a href="https://app.scorevera.com/register" className="btn btn-p">
+                Upload Your Report{" "}
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M7 1.5L12.5 7L7 12.5M1.5 7h11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+              <a href="#how" className="btn btn-g">See How It Works</a>
+            </div>
+            <div className="hero-trust rv d3">
+              <span className="trust-dot" />
+              <span>No install</span>
+              <span style={{ color: "var(--t4)" }}>·</span>
+              <span>No contract</span>
+              <span style={{ color: "var(--t4)" }}>·</span>
+              <span>Runs in your browser</span>
+            </div>
+          </div>
+
+          <div className="hero-right rv d2">
+            <div className="terminal">
+              <div className="term-bar" aria-hidden="true">
+                <span className="tdot tdot-r" />
+                <span className="tdot tdot-y" />
+                <span className="tdot tdot-g" />
+                <span className="term-title">scorevera — dispute_engine</span>
+              </div>
+              <div className="term-body" ref={termBodyRef}>
+                <span className="tl">
+                  <span className="tp">$ </span>
+                  <span ref={typedRef} className="tc-terminal" />
+                  <span className="cursor" id="sv-cursor" aria-hidden="true" />
+                </span>
+              </div>
+            </div>
+
+            <div className="stats-strip">
+              <div className="stat-cell">
+                <span className="stat-n"><span className="g">559→716</span></span>
+                <span className="stat-l">Founder Proof</span>
+              </div>
+              <div className="stat-cell">
+                <span className="stat-n">30</span>
+                <span className="stat-l">Day Window</span>
+              </div>
+              <div className="stat-cell">
+                <span className="stat-n">+157</span>
+                <span className="stat-l">Pts · 1 Round</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Bottom fade */}
-      <div
-        className="pointer-events-none absolute bottom-0 left-0 right-0 h-32"
-        style={{
-          background: "linear-gradient(to bottom, transparent, #07090d)",
-        }}
-        aria-hidden="true"
-      />
     </section>
   );
 }

@@ -1,267 +1,158 @@
-"use client";
+const checkIcon = (
+  <svg className="pf-ok" viewBox="0 0 15 15" fill="none">
+    <path d="M2.5 7.5l4 4 6-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
-import { useState } from "react";
+const lockIcon = (
+  <svg className="pf-ok pf-lock" viewBox="0 0 15 15" fill="none">
+    <rect x="3" y="6.5" width="9" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.2" />
+    <path d="M5 6.5V5a3 3 0 016 0v1.5" stroke="currentColor" strokeWidth="1.2" />
+  </svg>
+);
 
 const plans = [
   {
     name: "Free",
-    price: { monthly: 0, annual: 0 },
-    description: "See where you stand. No credit card required.",
-    cta: "Start for Free",
-    ctaHref: "#",
-    highlighted: false,
-    features: [
-      { text: "Credit score from 1 bureau", included: true },
-      { text: "Basic score breakdown (5 factors)", included: true },
-      { text: "3 action items", included: true },
-      { text: "All 3 bureau reports", included: false },
-      { text: "Full 22-factor Vera Score™ analysis", included: false },
-      { text: "Personalized action plan (unlimited)", included: false },
-      { text: "Weekly score sync", included: false },
-      { text: "Dispute automation", included: false },
-      { text: "Score simulator", included: false },
-    ],
-  },
-  {
-    name: "Essential",
-    price: { monthly: 19, annual: 14 },
-    description: "Everything you need to build a serious plan.",
-    cta: "Start Essential",
-    ctaHref: "#",
-    highlighted: false,
+    price: "$0",
+    priceClass: "plan-price free",
+    per: null,
+    tag: "See what is wrong before committing.",
+    featured: false,
     badge: null,
+    delay: "",
+    btnClass: "btn btn-g",
+    btnText: "Upload Your Report",
     features: [
-      { text: "Credit score from 1 bureau", included: true },
-      { text: "Basic score breakdown (5 factors)", included: true },
-      { text: "3 action items", included: true },
-      { text: "All 3 bureau reports", included: true },
-      { text: "Full 22-factor Vera Score™ analysis", included: true },
-      { text: "Personalized action plan (unlimited)", included: true },
-      { text: "Weekly score sync", included: false },
-      { text: "Dispute automation", included: false },
-      { text: "Score simulator", included: false },
+      { icon: checkIcon, text: "Upload your credit report", locked: false },
+      { icon: checkIcon, text: "Identify negative items", locked: false },
+      { icon: checkIcon, text: "Understand what needs action", locked: false },
+      { icon: lockIcon, text: "Letter generation", locked: true },
     ],
   },
   {
-    name: "Pro",
-    price: { monthly: 39, annual: 29 },
-    description: "Active tracking, disputes, and simulation tools.",
-    cta: "Start Pro — Most Popular",
-    ctaHref: "#",
-    highlighted: true,
-    badge: "Most Popular",
+    name: "Core System",
+    price: "$29",
+    priceClass: "plan-price",
+    per: "/mo",
+    tag: "Take action. Full structure for your disputes.",
+    featured: false,
+    badge: null,
+    delay: "d1",
+    btnClass: "btn btn-g",
+    btnText: "Start Fixing Your Report",
     features: [
-      { text: "Credit score from 1 bureau", included: true },
-      { text: "Basic score breakdown (5 factors)", included: true },
-      { text: "3 action items", included: true },
-      { text: "All 3 bureau reports", included: true },
-      { text: "Full 22-factor Vera Score™ analysis", included: true },
-      { text: "Personalized action plan (unlimited)", included: true },
-      { text: "Weekly score sync", included: true },
-      { text: "Dispute automation", included: true },
-      { text: "Score simulator", included: true },
+      { icon: checkIcon, text: "Full dispute letter engine", locked: false },
+      { icon: checkIcon, text: "All core letter types", locked: false },
+      { icon: checkIcon, text: "30-day timeline tracking", locked: false },
+      { icon: checkIcon, text: "Export and send letters", locked: false },
+      { icon: checkIcon, text: "1 profile", locked: false },
+    ],
+  },
+  {
+    name: "Guided System",
+    price: "$49",
+    priceClass: "plan-price",
+    per: "/mo",
+    tag: "Remove second-guessing. Keep the process moving.",
+    featured: true,
+    badge: "Most Popular",
+    delay: "d2",
+    btnClass: "btn btn-b",
+    btnText: "Let the System Guide You",
+    features: [
+      { icon: checkIcon, text: "Everything in Core", locked: false },
+      { icon: checkIcon, text: "Next-best-action guidance", locked: false },
+      { icon: checkIcon, text: "Multi-round sequencing", locked: false },
+      { icon: checkIcon, text: "Escalation logic", locked: false },
+      { icon: checkIcon, text: "Mistake guardrails", locked: false },
+    ],
+  },
+  {
+    name: "Operator",
+    price: "$99",
+    priceClass: "plan-price",
+    per: "/mo",
+    tag: "Run the system at scale for yourself or others.",
+    featured: false,
+    badge: null,
+    delay: "d3",
+    btnClass: "btn btn-g",
+    btnText: "Run the System",
+    features: [
+      { icon: checkIcon, text: "Everything in Guided", locked: false },
+      { icon: checkIcon, text: "Multiple profiles", locked: false },
+      { icon: checkIcon, text: "Bulk workflows", locked: false },
+      { icon: checkIcon, text: "Client-level tracking", locked: false },
+      { icon: checkIcon, text: "Built for repeatable use", locked: false },
     ],
   },
 ];
 
 export default function Pricing() {
-  const [annual, setAnnual] = useState(false);
-
   return (
-    <section className="section-pad px-6 md:px-8" id="pricing">
-      <div className="mx-auto max-w-7xl">
-        {/* Header */}
-        <div className="mb-12 text-center">
-          <div
-            className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest"
-            style={{ color: "#c9a55a" }}
-          >
-            Pricing
-          </div>
-          <h2
-            className="mb-4 text-4xl font-bold md:text-5xl"
-            style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
-          >
-            Simple, transparent pricing.
-            <br />
-            <span style={{ color: "#c9a55a" }}>Cancel anytime.</span>
-          </h2>
-
-          {/* Toggle */}
-          <div className="inline-flex items-center gap-4 mt-6">
-            <span
-              className="text-sm font-medium"
-              style={{ color: annual ? "#6b7280" : "#f9fafb" }}
-            >
-              Monthly
-            </span>
-            <button
-              onClick={() => setAnnual(!annual)}
-              className="relative h-7 w-14 rounded-full transition-colors focus:outline-none"
-              style={{
-                backgroundColor: annual ? "#c9a55a" : "#1e2738",
-              }}
-              aria-label="Toggle annual billing"
-            >
-              <span
-                className="absolute top-1 left-1 h-5 w-5 rounded-full bg-white transition-transform"
-                style={{ transform: annual ? "translateX(28px)" : "translateX(0)" }}
-              />
-            </button>
-            <span
-              className="text-sm font-medium"
-              style={{ color: annual ? "#f9fafb" : "#6b7280" }}
-            >
-              Annual{" "}
-              <span
-                className="ml-1 rounded-full px-2 py-0.5 text-xs font-semibold"
-                style={{ backgroundColor: "rgba(201,165,90,0.2)", color: "#c9a55a" }}
-              >
-                Save 25%
-              </span>
-            </span>
-          </div>
+    <section id="pricing" className="section">
+      <div className="wrap">
+        <div className="sh center rv">
+          <span className="eyebrow">Pricing</span>
+          <h2 className="h-xl">Pick the level of control you want.</h2>
+          <p className="body-lg">
+            Start free. Upgrade when you want the system to do more of the thinking for you. No
+            installs. No contracts. Cancel anytime.
+          </p>
         </div>
 
-        {/* Plans grid */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="plans">
           {plans.map((plan) => (
             <div
+              className={`plan rv${plan.delay ? ` ${plan.delay}` : ""}${plan.featured ? " feat" : ""}`}
               key={plan.name}
-              className="relative flex flex-col rounded-2xl p-8 transition-all"
-              style={{
-                backgroundColor: plan.highlighted ? "#151b25" : "#0e1117",
-                border: plan.highlighted
-                  ? "1px solid rgba(201,165,90,0.4)"
-                  : "1px solid #1e2738",
-                boxShadow: plan.highlighted
-                  ? "0 0 50px rgba(201,165,90,0.08)"
-                  : "none",
-              }}
             >
-              {/* Badge */}
               {plan.badge && (
-                <div
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1 text-xs font-bold"
-                  style={{
-                    background: "linear-gradient(135deg, #c9a55a 0%, #a8843c 100%)",
-                    color: "#07090d",
-                  }}
-                >
+                <div className="plan-badge">
+                  <span className="pb-dot" />
                   {plan.badge}
                 </div>
               )}
 
-              {/* Plan name */}
-              <div
-                className="mb-1 text-sm font-semibold uppercase tracking-widest"
-                style={{ color: plan.highlighted ? "#c9a55a" : "#6b7280" }}
-              >
-                {plan.name}
-              </div>
-
-              {/* Price */}
-              <div className="mb-2 flex items-end gap-1">
-                <span
-                  className="text-5xl font-bold"
-                  style={{
-                    fontFamily: "var(--font-fraunces), Georgia, serif",
-                    color: "#f9fafb",
-                  }}
+              <div>
+                <div
+                  className="plan-name"
+                  style={plan.featured ? { color: "var(--blue-lo)" } : undefined}
                 >
-                  ${annual ? plan.price.annual : plan.price.monthly}
-                </span>
-                {(plan.price.monthly > 0) && (
-                  <span className="mb-2 text-sm" style={{ color: "#6b7280" }}>
-                    /mo
-                  </span>
-                )}
+                  {plan.name}
+                </div>
+                <div style={{ marginTop: "10px" }}>
+                  <span className={plan.priceClass}>{plan.price}</span>
+                  {plan.per && <span className="plan-per">{plan.per}</span>}
+                </div>
               </div>
 
-              <p className="mb-7 text-sm leading-relaxed" style={{ color: "#9ca3af" }}>
-                {plan.description}
-              </p>
+              <p className="plan-tag">{plan.tag}</p>
 
-              {/* CTA */}
-              <a
-                href={plan.ctaHref}
-                className="mb-8 flex items-center justify-center rounded-full py-3 text-sm font-bold transition-all hover:scale-105"
-                style={
-                  plan.highlighted
-                    ? {
-                        background: "linear-gradient(135deg, #c9a55a 0%, #a8843c 100%)",
-                        color: "#07090d",
-                        boxShadow: "0 0 20px rgba(201,165,90,0.3)",
-                      }
-                    : {
-                        backgroundColor: "#1c2433",
-                        color: "#d1d5db",
-                        border: "1px solid #1e2738",
-                      }
-                }
-              >
-                {plan.cta}
-              </a>
+              <div className={`plan-sep${plan.featured ? " blue" : ""}`} />
 
-              {/* Features */}
-              <ul className="flex-1 space-y-3">
-                {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3">
-                    {feature.included ? (
-                      <svg
-                        className="w-4 h-4 shrink-0"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke={plan.highlighted ? "#c9a55a" : "#22c55e"}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                      </svg>
-                    ) : (
-                      <svg
-                        className="w-4 h-4 shrink-0"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="#374151"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
-                      </svg>
-                    )}
-                    <span
-                      className="text-sm"
-                      style={{ color: feature.included ? "#d1d5db" : "#374151" }}
-                    >
-                      {feature.text}
-                    </span>
+              <ul className="plan-feats">
+                {plan.features.map((feat, i) => (
+                  <li key={i}>
+                    {feat.icon}
+                    {feat.text}
+                    {feat.locked && <span className="pf-lk">(locked)</span>}
                   </li>
                 ))}
               </ul>
+
+              <a href="https://app.scorevera.com/register" className={plan.btnClass}>
+                {plan.btnText}
+              </a>
             </div>
           ))}
         </div>
 
-        {/* Guarantee */}
-        <div className="mt-10 flex flex-col items-center gap-3 text-center sm:flex-row sm:justify-center">
-          <div className="flex items-center gap-2 text-sm" style={{ color: "#9ca3af" }}>
-            <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="#22c55e">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-            </svg>
-            30-day money-back guarantee
-          </div>
-          <div className="hidden sm:block h-4 w-px" style={{ backgroundColor: "#1e2738" }} />
-          <div className="flex items-center gap-2 text-sm" style={{ color: "#9ca3af" }}>
-            <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="#22c55e">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-            </svg>
-            Cancel anytime, no penalty
-          </div>
-          <div className="hidden sm:block h-4 w-px" style={{ backgroundColor: "#1e2738" }} />
-          <div className="flex items-center gap-2 text-sm" style={{ color: "#9ca3af" }}>
-            <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="#22c55e">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-            </svg>
-            No impact on your credit score to sign up
-          </div>
-        </div>
+        <p className="pricing-note rv">
+          Most people get the most value from Guided — it removes second-guessing and keeps the
+          process moving.
+        </p>
       </div>
     </section>
   );
