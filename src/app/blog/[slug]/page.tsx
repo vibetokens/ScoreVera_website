@@ -57,7 +57,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
-    author: { "@type": "Person", name: "Jason Murphy" },
+    author: { "@type": "Person", name: post.author.name },
     publisher: { "@type": "Organization", name: "ScoreVera" },
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
@@ -116,7 +116,17 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     marginBottom:"36px",
                     fontFamily:"var(--f-m)", fontSize:".6875rem", color:"var(--t4)", letterSpacing:".04em",
                   }}>
-                    <span>By Jason Murphy</span>
+                    <span style={{ display:"inline-flex", alignItems:"center", gap:"7px" }}>
+                      <span style={{
+                        width:22, height:22, borderRadius:"50%",
+                        background:"var(--raised)", border:"1px solid var(--border-md)",
+                        display:"inline-flex", alignItems:"center", justifyContent:"center",
+                        fontSize:".5rem", fontWeight:700, color:"var(--gold)", letterSpacing:".03em", flexShrink:0,
+                      }}>
+                        {post.author.initials}
+                      </span>
+                      {post.author.name} · {post.author.title}
+                    </span>
                     <span>·</span>
                     <span>{new Date(post.publishedAt).toLocaleDateString("en-US", { year:"numeric", month:"long", day:"numeric" })}</span>
                     <span>·</span>

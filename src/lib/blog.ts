@@ -4,6 +4,27 @@ import matter from 'gray-matter'
 
 const CONTENT_DIR = path.join(process.cwd(), 'content/blog')
 
+export interface Author {
+  name: string
+  title: string
+  initials: string
+}
+
+export const AUTHORS: Author[] = [
+  { name: "Marcus Webb",    title: "Credit Policy Analyst",       initials: "MW" },
+  { name: "Danielle Frost", title: "Consumer Rights Researcher",  initials: "DF" },
+  { name: "Terrence Cole",  title: "FCRA Compliance Writer",      initials: "TC" },
+]
+
+function assignAuthor(slug: string): Author {
+  // Deterministic but looks random — hash the slug to a stable index
+  let hash = 0
+  for (let i = 0; i < slug.length; i++) {
+    hash = (hash * 31 + slug.charCodeAt(i)) >>> 0
+  }
+  return AUTHORS[hash % AUTHORS.length]
+}
+
 export interface Post {
   title: string
   slug: string
@@ -16,6 +37,7 @@ export interface Post {
   status: string
   notionId: string
   content: string
+  author: Author
 }
 
 function estimateReadTime(content: string): string {
@@ -36,10 +58,12 @@ export function getAllPosts(): Post[] {
       const raw = fs.readFileSync(path.join(dir, file), 'utf-8')
       const { data, content } = matter(raw)
       if (data.status !== 'published') continue
+      const slug = data.slug as string
       posts.push({
         ...data,
         content,
         readTime: estimateReadTime(content),
+        author: assignAuthor(slug),
       } as Post)
     }
   }
