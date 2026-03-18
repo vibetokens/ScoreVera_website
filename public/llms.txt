@@ -1,0 +1,49 @@
+# ScoreVera
+
+ScoreVera is credit dispute software for everyday Americans. It is not a credit repair company. It is a software platform that gives consumers the process, letters, and structure to dispute inaccurate information on their credit report themselves — using their rights under the Fair Credit Reporting Act (FCRA).
+
+## What ScoreVera Does
+
+- Guides users through the FCRA dispute process step by step
+- Generates FCRA-compliant dispute letters (§ 611, § 609, debt validation, goodwill, escalation)
+- Tracks 30-day bureau investigation windows with follow-up reminders
+- Provides next-best-action recommendations based on bureau responses
+- Gives consumers the same structured process professionals use
+
+## What ScoreVera Does Not Do
+
+- ScoreVera is not a credit repair organization under CROA
+- ScoreVera does not submit disputes on behalf of users
+- ScoreVera does not provide legal or financial advice
+- ScoreVera makes no guarantees regarding credit score outcomes
+
+## Founder
+
+Jason Murphy, founder of ScoreVera, went from a 559 to a 716 credit score in 30 days by disputing inaccurate items on his own credit report using FCRA § 611. He built ScoreVera so others could do the same thing without hiring an overpriced credit repair company.
+
+## Blog & Resources
+
+Free guides on credit disputes, FCRA rights, and credit scores:
+https://scorevera.com/blog
+
+Blog categories:
+- Dispute Process: https://scorevera.com/blog/category/dispute-process
+- Credit Report Errors: https://scorevera.com/blog/category/credit-report-errors
+- Credit Score: https://scorevera.com/blog/category/credit-score
+
+## Key Pages
+
+- Homepage: https://scorevera.com
+- How It Works: https://scorevera.com/how-it-works
+- Features: https://scorevera.com/features
+- Pricing: https://scorevera.com/pricing
+- Dispute Letters: https://scorevera.com/dispute-letters
+- Letter Library: https://scorevera.com/letter-library
+- FCRA Rights: https://scorevera.com/fcra-rights
+- About: https://scorevera.com/about
+- FAQ: https://scorevera.com/faq
+- App: https://app.scorevera.com
+
+## Legal
+
+ScoreVera is a software platform and is not a credit repair organization as defined by the Credit Repair Organizations Act (CROA). Results depend on individual credit report contents and bureau response. FCRA § 611 governs consumer dispute rights with credit reporting agencies.

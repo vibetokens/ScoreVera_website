@@ -5,7 +5,14 @@
       "Bash(npm run:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(npm install:*)",
+      "Read(//c/Users/jason/OneDrive/Desktop/**)",
+      "Bash(cp \"/c/Users/jason/OneDrive/Desktop/sv-founder-murphy.jpg\" \"/c/Users/jason/scorevera-web/public/images/sv-founder-murphy.jpg\")",
+      "Bash(ls /c/Users/jason/scorevera-web/src/components/Blog*)",
+      "Bash(cat /c/Users/jason/scorevera-web/src/app/blog/category/[category]/page.tsx)",
+      "Bash(xargs grep:*)",
+      "Bash(cat /c/Users/jason/scorevera-web/src/app/blog/[slug]/page.tsx)"
     ]
   }
 }
