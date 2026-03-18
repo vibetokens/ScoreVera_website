@@ -355,11 +355,14 @@ img.logo-img{height:32px!important;max-height:32px!important;width:auto!importan
 .foot-start-btn{display:inline-flex;align-items:center;justify-content:center;background:var(--gold);color:#07090D;font-family:var(--f-u);font-size:.8125rem;font-weight:700;padding:9px 16px;border-radius:7px;width:fit-content;transition:background .15s;white-space:nowrap}
 .foot-start-btn:hover{background:var(--gold-hi)}
 .foot-brand-copy{font-family:var(--f-m);font-size:.5625rem;color:var(--t4);letter-spacing:.04em}
-.foot-link-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-@media(min-width:1024px){.foot-link-cols{gap:32px}}
-.foot-col-h{font-family:var(--f-m);font-size:.5625rem;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.foot-link-cols{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media(min-width:1024px){.foot-link-cols{gap:56px}}
+.foot-col{display:flex;flex-direction:column;gap:0}
+.foot-section{margin-bottom:28px}
+.foot-section:last-child{margin-bottom:0}
+.foot-col-h{font-family:var(--f-m);font-size:.5625rem;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
 .foot-col-ul{list-style:none;display:flex;flex-direction:column}
-.foot-col-ul a{font-size:.8125rem;color:var(--t3);padding:3px 0;display:block;line-height:1.45;transition:color .15s}
+.foot-col-ul a{font-size:.8125rem;color:var(--t3);padding:3px 0;display:block;line-height:1.5;transition:color .15s}
 .foot-col-ul a:hover{color:var(--t2)}
 .foot-bar{padding:20px 0;border-top:1px solid var(--border)}
 .foot-bar p{font-family:var(--f-m);font-size:.5625rem;color:var(--t4);line-height:1.8;letter-spacing:.02em}
@@ -369,13 +372,11 @@ img.logo-img{height:32px!important;max-height:32px!important;width:auto!importan
   .foot-inner{grid-template-columns:1fr;gap:0}
   .foot-brand-col{padding-bottom:28px;border-bottom:1px solid var(--border);margin-bottom:28px}
   .foot-tagline{max-width:none}
-  /* On mobile: Product col full-width on top, link cols 2-col grid below */
-  .foot-link-cols{grid-template-columns:1fr 1fr;gap:0}
-  .foot-col-h{display:none}
-  .foot-col-ul a{min-height:44px;display:flex;align-items:center;font-size:.875rem;padding:0 6px;border-radius:6px}
-  .foot-col-ul a:hover{background:rgba(255,255,255,.04);color:var(--t2)}
-  /* Cap each column at 6 links on mobile to keep columns balanced */
-  .foot-col-ul li:nth-child(n+7){display:none}
+  /* Two equal columns remain on mobile — just tighten spacing */
+  .foot-link-cols{gap:24px}
+  .foot-section{margin-bottom:20px}
+  .foot-col-h{font-size:.5rem}
+  .foot-col-ul a{font-size:.8125rem;padding:2px 0}
 }
 
 /* ===== MOBILE DRAWER CTA FIX ===== */
