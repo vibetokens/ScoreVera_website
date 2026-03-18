@@ -1,4 +1,4 @@
-const LOGO = "http://scorevera.com/wp-content/uploads/2026/03/scorevera_logo_transparent-1.png";
+const LOGO = "/images/scorevera-logo.png";
 
 const PRODUCT_LINKS = [
   { label: "How It Works", href: "#how" },
@@ -40,7 +40,7 @@ const FCRA_LINKS = [
   { label: "The 30-Day Investigation Rule", href: "https://learn.scorevera.com/30-day-rule" },
   { label: "Maximum Dispute Window", href: "https://learn.scorevera.com/dispute-window" },
   { label: "Bankruptcy on Your Credit Report", href: "https://learn.scorevera.com/bankruptcy-credit-report" },
-  { label: "Reporting Agency Contact Info", href: "https://learn.scorevera.com/bureau-contact-info" },
+  { label: "Bureau Contact Information", href: "https://learn.scorevera.com/bureau-contact-info" },
   { label: "How to File a Regulatory Complaint", href: "https://learn.scorevera.com/regulatory-complaints" },
 ];
 
@@ -69,13 +69,13 @@ export default function Footer() {
             <a href="/" aria-label="ScoreVera">
               <img src={LOGO} alt="ScoreVera" className="logo-img" />
             </a>
-            <p className="foot-brand-copy" style={{ fontSize: ".8125rem", color: "var(--t3)", lineHeight: 1.6 }}>
+            <p className="foot-tagline">
               Turn your credit report into an action plan. ScoreVera gives you the process — you run it.
             </p>
             <a href="https://app.scorevera.com/" className="foot-start-btn">
               Get Started Free
             </a>
-            <p className="foot-brand-copy">© 2026 ScoreVera. All rights reserved.</p>
+            <span className="foot-brand-copy">© 2026 ScoreVera. All rights reserved.</span>
           </div>
 
           <div className="foot-link-cols">

@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 
+const LOGO = "/images/scorevera-logo.png";
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -43,14 +45,9 @@ export default function Header() {
       <header id="hdr" className={scrolled ? "scrolled" : ""}>
         <div className="wrap">
           <nav className="nav">
-            <a href="/" className="logo" aria-label="ScoreVera">
-              <div className="logo-icon">
-                <svg viewBox="0 0 16 16" fill="none">
-                  <path d="M8 1.5L14 5v6L8 14.5L2 11V5L8 1.5Z" stroke="#07090D" strokeWidth="1.5" fill="none" />
-                  <path d="M8 4.5L12 7v4.5L8 14L4 11.5V7L8 4.5Z" fill="#07090D" />
-                </svg>
-              </div>
-              <span className="logo-name">Score<span>Vera</span></span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <a href="/" className="logo-img-wrap" aria-label="ScoreVera">
+              <img src={LOGO} alt="ScoreVera" className="logo-img" />
             </a>
 
             <ul className="nav-links">
