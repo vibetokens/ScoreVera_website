@@ -47,7 +47,7 @@ export default function Header() {
           <nav className="nav">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <a href="/" className="logo-img-wrap" aria-label="ScoreVera">
-              <img src={LOGO} alt="ScoreVera" className="logo-img" />
+              <img src={LOGO} alt="ScoreVera" className="logo-img" height={32} width={190} />
             </a>
 
             <ul className="nav-links">

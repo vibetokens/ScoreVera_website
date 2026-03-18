@@ -67,7 +67,7 @@ export default function Footer() {
           <div className="foot-brand-col">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <a href="/" aria-label="ScoreVera">
-              <img src={LOGO} alt="ScoreVera" className="logo-img" />
+              <img src={LOGO} alt="ScoreVera" className="logo-img" height={32} width={190} />
             </a>
             <p className="foot-tagline">
               Turn your credit report into an action plan. ScoreVera gives you the process — you run it.
