@@ -1,0 +1,21 @@
+{
+  "name": "ScoreVera",
+  "short_name": "ScoreVera",
+  "description": "Credit dispute software for everyday Americans.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#07090D",
+  "theme_color": "#07090D",
+  "icons": [
+    {
+      "src": "/icon",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
