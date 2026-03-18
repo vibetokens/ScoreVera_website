@@ -1,9 +1,16 @@
 import { ImageResponse } from "next/og";
+import fs from "fs";
+import path from "path";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function OGImage() {
+  const iconData = fs.readFileSync(
+    path.join(process.cwd(), "public/images/sv-icon-80.png")
+  );
+  const iconBase64 = `data:image/png;base64,${iconData.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -44,24 +51,9 @@ export default async function OGImage() {
         />
 
         {/* Top: logo mark + wordmark */}
-        <div style={{ display: "flex", alignItems: "center", gap: 20, position: "relative" }}>
-          {/* Icon */}
-          <div
-            style={{
-              width: 56,
-              height: 56,
-              background: "#111722",
-              border: "1.5px solid rgba(201,165,90,0.4)",
-              borderRadius: 12,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <span style={{ fontFamily: "serif", fontSize: 34, fontWeight: 700, color: "#C9A55A", lineHeight: 1 }}>
-              S
-            </span>
-          </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, position: "relative" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={iconBase64} width={56} height={56} alt="ScoreVera icon" />
           <span
             style={{
               fontFamily: "sans-serif",
