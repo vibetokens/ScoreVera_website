@@ -45,7 +45,7 @@ export default function AboutPage() {
               {/* Founder Photo */}
               <div className="f-img">
                 <img
-                  src="http://scorevera.com/wp-content/uploads/2026/03/sv-founder-murphy.jpg"
+                  src="/images/sv-founder-murphy.jpg"
                   alt="Jason Murphy, founder of ScoreVera"
                   width={340}
                   height={453}

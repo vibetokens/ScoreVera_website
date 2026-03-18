@@ -368,10 +368,13 @@ img.logo-img{height:32px!important;max-height:32px!important;width:auto!importan
   .foot-inner{grid-template-columns:1fr;gap:0}
   .foot-brand-col{padding-bottom:28px;border-bottom:1px solid var(--border);margin-bottom:28px}
   .foot-tagline{max-width:none}
+  /* On mobile: Product col full-width on top, link cols 2-col grid below */
   .foot-link-cols{grid-template-columns:1fr 1fr;gap:0}
   .foot-col-h{display:none}
   .foot-col-ul a{min-height:44px;display:flex;align-items:center;font-size:.875rem;padding:0 6px;border-radius:6px}
   .foot-col-ul a:hover{background:rgba(255,255,255,.04);color:var(--t2)}
+  /* Cap each column at 6 links on mobile to keep columns balanced */
+  .foot-col-ul li:nth-child(n+7){display:none}
 }
 
 /* ===== MOBILE DRAWER CTA FIX ===== */

@@ -1,4 +1,4 @@
-const PHOTO = "http://scorevera.com/wp-content/uploads/2026/03/sv-founder-murphy.jpg";
+const PHOTO = "/images/sv-founder-murphy.jpg";
 
 export default function Founder() {
   return (
