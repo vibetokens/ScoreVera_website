@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import MobileBar from "@/components/MobileBar";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -75,7 +74,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${fraunces.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable}`}>
         {children}
-        <MobileBar />
       </body>
     </html>
   );
