@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import NewsletterForm from "@/components/NewsletterForm";
 
 export const metadata: Metadata = {
   title: "Newsletter | ScoreVera",
@@ -89,34 +90,7 @@ export default function NewsletterPage() {
                 learning the FCRA process. One email per week. Plain English.
               </p>
 
-              <form
-                action="#"
-                style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}
-              >
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  style={{
-                    flex: "1 1 240px",
-                    background: "var(--elevated)",
-                    border: "1px solid var(--border-md)",
-                    borderRadius: "7px",
-                    padding: "13px 16px",
-                    color: "var(--t1)",
-                    fontSize: ".9375rem",
-                    fontFamily: "var(--f-u)",
-                    outline: "none",
-                    minWidth: "0",
-                  }}
-                />
-                <button
-                  type="submit"
-                  className="btn btn-p"
-                  style={{ fontSize: ".9375rem", padding: "13px 28px", flexShrink: 0 }}
-                >
-                  Subscribe
-                </button>
-              </form>
+              <NewsletterForm />
               <p
                 style={{
                   marginTop: "12px",
