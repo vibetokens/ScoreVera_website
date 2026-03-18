@@ -118,6 +118,24 @@ export default function Footer() {
                 ))}
               </ul>
             </div>
+
+            <div>
+              <div className="foot-col-h">Blog</div>
+              <ul className="foot-col-ul">
+                <li><a href="/blog">All Guides</a></li>
+                <li><a href="/blog/category/dispute-process">Dispute Process</a></li>
+                <li><a href="/blog/category/credit-report-errors">Credit Report Errors</a></li>
+                <li><a href="/blog/category/credit-score">Credit Score</a></li>
+                <li><a href="/blog/how-to-dispute-credit-report-error">How to Dispute a Credit Report</a></li>
+                <li><a href="/blog/fcra-section-611-dispute-rights">FCRA § 611 Explained</a></li>
+                <li><a href="/blog/goodwill-letter-late-payment">Goodwill Letter Guide</a></li>
+                <li><a href="/blog/escalate-dispute-to-cfpb">Escalate to CFPB</a></li>
+                <li><a href="/blog/how-credit-scores-are-calculated">How Scores Are Calculated</a></li>
+                <li><a href="/blog/why-credit-score-dropped">Why Your Score Dropped</a></li>
+                <li><a href="/blog/how-to-read-your-credit-report">How to Read Your Report</a></li>
+                <li><a href="/blog/how-to-get-free-credit-report">Get Your Free Report</a></li>
+              </ul>
+            </div>
           </div>
         </div>
 

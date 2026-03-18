@@ -48,7 +48,7 @@ const NAV: NavGroup[] = [
           { label: "Medical Collections", href: "/blog/how-to-dispute-medical-collections" },
           { label: "Remove a Charge-Off", href: "/blog/how-to-dispute-charge-off-credit-report" },
           { label: "Round 2 Dispute Strategy", href: "/blog/method-of-verification-letter" },
-          { label: "→ All Dispute Guides", href: "/blog", accent: true },
+          { label: "→ All Dispute Guides", href: "/blog/category/dispute-process", accent: true },
         ],
       },
       {
@@ -60,7 +60,7 @@ const NAV: NavGroup[] = [
           { label: "The 30-Day Investigation Rule", href: "/blog/30-day-bureau-investigation-timeline" },
           { label: "Statute of Limitations on Debt", href: "/blog/zombie-debt-credit-report" },
           { label: "FDCPA Debt Collector Rules", href: "/blog/debt-validation-letter-guide" },
-          { label: "→ All Rights Guides", href: "/blog", accent: true },
+          { label: "→ All Rights Guides", href: "/blog/category/credit-report-errors", accent: true },
         ],
       },
       {
@@ -72,7 +72,18 @@ const NAV: NavGroup[] = [
           { label: "Credit Utilization Explained", href: "/blog/credit-utilization-guide" },
           { label: "How to Raise Your Score Fast", href: "/blog/how-to-raise-credit-score-fast" },
           { label: "Hard vs Soft Inquiries", href: "/blog/hard-vs-soft-inquiries" },
-          { label: "→ All Score Guides", href: "/blog", accent: true },
+          { label: "→ All Score Guides", href: "/blog/category/credit-score", accent: true },
+        ],
+      },
+      {
+        heading: "Blog",
+        links: [
+          { label: "All Guides", href: "/blog" },
+          { label: "Dispute Process", href: "/blog/category/dispute-process" },
+          { label: "Credit Report Errors", href: "/blog/category/credit-report-errors" },
+          { label: "Credit Score", href: "/blog/category/credit-score" },
+          { label: "How to Read Your Credit Report", href: "/blog/how-to-read-your-credit-report" },
+          { label: "Get Your Free Credit Report", href: "/blog/how-to-get-free-credit-report" },
         ],
       },
     ],
@@ -122,11 +133,13 @@ const NAV: NavGroup[] = [
         ],
       },
       {
-        heading: "Learn",
+        heading: "Blog & Guides",
         links: [
           { label: "All Guides", href: "/blog" },
+          { label: "Dispute Process", href: "/blog/category/dispute-process" },
+          { label: "Credit Report Errors", href: "/blog/category/credit-report-errors" },
+          { label: "Credit Score", href: "/blog/category/credit-score" },
           { label: "FAQ", href: "/faq" },
-          { label: "Resources Hub", href: "/resources" },
           { label: "Newsletter", href: "/newsletter" },
         ],
       },
