@@ -142,7 +142,7 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              <a href="https://app.scorevera.com/register" className={plan.btnClass}>
+              <a href="https://app.scorevera.com/" className={plan.btnClass}>
                 {plan.btnText}
               </a>
             </div>

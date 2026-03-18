@@ -188,7 +188,7 @@ export default function Hero() {
               ScoreVera turns a confusing credit report into a structured, trackable process.
             </p>
             <div className="hero-acts btn-stack rv d2">
-              <a href="https://app.scorevera.com/register" className="btn btn-p">
+              <a href="https://app.scorevera.com/" className="btn btn-p">
                 Upload Your Report{" "}
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                   <path d="M7 1.5L12.5 7L7 12.5M1.5 7h11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

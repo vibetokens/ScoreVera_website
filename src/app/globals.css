@@ -339,3 +339,52 @@ footer{border-top:1px solid var(--border);padding:36px 0 28px}
 .foot-nav a:hover{color:var(--t2)}
 .foot-copy{font-family:var(--f-m);font-size:.6875rem;color:var(--t4);letter-spacing:.04em}
 .foot-legal{font-family:var(--f-m);font-size:.5625rem;color:var(--t4);line-height:1.8;letter-spacing:.02em;padding-top:20px;border-top:1px solid var(--border)}
+
+/* ===== MOBILE DRAWER CTA FIX ===== */
+/* .drawer a overrides btn-p color — restore gold button appearance */
+.drawer a.btn-p{background:var(--gold);color:#07090D;border-color:var(--gold);font-weight:700;min-height:52px}
+.drawer a.btn-p:hover{background:var(--gold-hi);border-color:var(--gold-hi)}
+
+/* ===== MOBILE BREATHING ROOM ===== */
+@media(max-width:767px){
+  /* Section vertical rhythm */
+  .section{padding:52px 0}
+  .sh{margin-bottom:28px}
+  .sh .eyebrow{margin-bottom:10px}
+  .sh .h-xl{margin-bottom:12px}
+
+  /* Text spacing — prevent walls of copy */
+  .body-lg{font-size:.9375rem;line-height:1.7;margin-bottom:16px}
+  .body-lg+.body-lg{margin-top:4px}
+
+  /* Founder */
+  .f-quote{margin:14px 0 16px;font-size:1.0625rem}
+  .score-proof{margin-bottom:16px;padding:12px 14px;gap:12px}
+  .info-band{padding:10px 14px}
+
+  /* Pillars */
+  .pillar{padding:22px 18px}
+  .p-n{margin-bottom:12px}
+  .p-icon{margin-bottom:12px}
+
+  /* Steps */
+  .step-content{padding-bottom:24px}
+  .step-title{margin-bottom:6px}
+
+  /* Objections */
+  .obj-card{padding:18px 16px}
+  .obj-q{margin-bottom:8px}
+
+  /* Compare */
+  .compare-card{padding:18px 16px}
+
+  /* FAQ */
+  .faq-btn{min-height:52px;padding:14px 16px}
+
+  /* Headings — slightly tighter on small screens */
+  .h-xl{letter-spacing:-.025em}
+
+  /* Section dividers — subtle top border for visual separation */
+  .section+.section{border-top:1px solid var(--border)}
+  #bureau+.section{border-top:none}
+}

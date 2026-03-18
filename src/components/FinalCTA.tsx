@@ -15,7 +15,7 @@ export default function FinalCTA() {
             No downloads. No guesswork. Log in, upload your report, and follow the process correctly.
           </p>
           <div className="cta-acts rv d2">
-            <a href="https://app.scorevera.com/register" className="btn btn-p">
+            <a href="https://app.scorevera.com/" className="btn btn-p">
               Upload Your Report{" "}
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path

@@ -61,7 +61,7 @@ export default function Header() {
 
             <div className="nav-right">
               <a href="https://app.scorevera.com/login" className="nav-login">Log In</a>
-              <a href="https://app.scorevera.com/register" className="btn btn-p nav-cta">Get Started</a>
+              <a href="https://app.scorevera.com/" className="btn btn-p nav-cta">Get Started</a>
               <button
                 className={`hbg${open ? " open" : ""}`}
                 onClick={() => setOpen(!open)}
@@ -81,7 +81,7 @@ export default function Header() {
         <a href="#founder" onClick={(e) => smoothScroll(e, "#founder")}>About</a>
         <div className="drawer-sep" />
         <a href="https://app.scorevera.com/login">Log In</a>
-        <a href="https://app.scorevera.com/register" className="btn btn-p" onClick={close}>
+        <a href="https://app.scorevera.com/" className="btn btn-p" onClick={close}>
           Get Started Free
         </a>
       </nav>

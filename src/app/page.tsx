@@ -23,10 +23,10 @@ export default function Home() {
         <Founder />
         <Pillars />
         <HowItWorks />
+        <Pricing />
+        <Testimonials />
         <Objections />
         <ProcessCompare />
-        <Testimonials />
-        <Pricing />
         <FAQ />
         <FinalCTA />
       </main>
