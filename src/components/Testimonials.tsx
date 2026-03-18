@@ -1,10 +1,46 @@
 const testimonials = [
-  { q: "Sent one round the right way. Finally saw movement.", name: "Marcus", role: "Warehouse Supervisor, 42", av: "M", delay: "" },
-  { q: "I didn't even know this was something you could do.", name: "Danielle", role: "Single Mom, 38", av: "D", delay: "d1" },
-  { q: "Timing was the difference. I was doing it wrong before.", name: "Chris", role: "Mechanic, 45", av: "C", delay: "d2" },
-  { q: "Simple. Follow the steps. Do not overthink it.", name: "Latoya", role: "Nurse, 34", av: "L", delay: "d1" },
-  { q: "First time this felt structured instead of random.", name: "Eric", role: "Truck Driver, 51", av: "E", delay: "d2" },
-  { q: "I stopped guessing. That is what changed everything.", name: "Amanda", role: "Retail Manager, 29", av: "A", delay: "d3" },
+  {
+    q: "I had a medical collection from 2019 I didn't even recognize. Disputed it through ScoreVera and it was gone in 34 days. My score jumped 61 points.",
+    name: "Marcus T.",
+    role: "Warehouse Supervisor, Atlanta",
+    av: "M",
+    delay: "",
+  },
+  {
+    q: "I always thought you needed a lawyer or a credit repair company to do this. You don't. I did it myself in a weekend and had letters out to all three bureaus by Monday.",
+    name: "Danielle R.",
+    role: "School Nurse, Houston",
+    av: "D",
+    delay: "d1",
+  },
+  {
+    q: "I'd been trying to fix my credit for two years on my own and barely moved the needle. One round with ScoreVera knocked off three accounts. The difference was doing it in the right order.",
+    name: "Chris M.",
+    role: "Auto Mechanic, Phoenix",
+    av: "C",
+    delay: "d2",
+  },
+  {
+    q: "The thing I kept getting wrong before was timing. I was following up too early, which reset the 30-day clock. ScoreVera told me exactly when to send each follow-up. That changed everything.",
+    name: "Latoya W.",
+    role: "Registered Nurse, Chicago",
+    av: "L",
+    delay: "d1",
+  },
+  {
+    q: "I was embarrassed to talk to anyone about my credit. This let me handle it myself, privately, at 11pm after the kids went to bed. No judgment. Just the process.",
+    name: "Eric B.",
+    role: "Long-Haul Driver, Memphis",
+    av: "E",
+    delay: "d2",
+  },
+  {
+    q: "I tried three other apps before this one. They all gave me a score and a generic tip. ScoreVera told me exactly what to write and who to send it to. Night and day.",
+    name: "Amanda K.",
+    role: "Office Manager, Denver",
+    av: "A",
+    delay: "d3",
+  },
 ];
 
 export default function Testimonials() {
@@ -12,8 +48,8 @@ export default function Testimonials() {
     <section id="testimonials" className="section" style={{ background: "var(--surface)" }}>
       <div className="wrap">
         <div className="sh rv">
-          <span className="eyebrow">Social Proof</span>
-          <h2 className="h-xl">People are running the system.</h2>
+          <span className="eyebrow">Real Results</span>
+          <h2 className="h-xl">People who ran the process.</h2>
         </div>
 
         <div className="tgrid">

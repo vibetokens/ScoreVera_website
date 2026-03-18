@@ -184,8 +184,7 @@ export default function Hero() {
               <em className="proof-i">your credit.</em>
             </h1>
             <p className="body-lg hero-sub rv d1">
-              Know what to send. Know when to send it. Know what happens next.
-              ScoreVera turns a confusing credit report into a structured, trackable process.
+              Most people have no idea what&apos;s actually dragging their score down — or that they have the legal right to challenge it. ScoreVera shows you exactly what to do, step by step.
             </p>
             <div className="hero-acts btn-stack rv d2">
               <a href="https://app.scorevera.com/" className="btn btn-p">

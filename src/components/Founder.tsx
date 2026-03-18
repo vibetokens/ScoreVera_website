@@ -1,27 +1,33 @@
+const PHOTO = "http://scorevera.com/wp-content/uploads/2026/03/sv-founder-murphy.jpg";
+
 export default function Founder() {
   return (
     <section id="founder" className="section">
       <div className="wrap">
         <div className="inner">
           <div className="f-img rv">
-            <div className="f-placeholder">
-              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" opacity="0.15" aria-hidden="true">
-                <circle cx="28" cy="20" r="12" stroke="white" strokeWidth="1.5" />
-                <path d="M5 52c0-12.703 10.297-23 23-23s23 10.297 23 23" stroke="white" strokeWidth="1.5" />
-              </svg>
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={PHOTO}
+              alt="Jason Murphy, Founder of ScoreVera"
+              className="f-photo"
+            />
             <div className="f-tag">
-              <div className="f-tag-name">Murphy</div>
+              <div className="f-tag-name">Jason Murphy</div>
               <div className="f-tag-role">Founder · ScoreVera</div>
             </div>
           </div>
 
           <div>
             <span className="eyebrow rv" style={{ marginBottom: "16px", display: "inline-flex" }}>
-              The Moment It Clicked
+              Built by someone who&apos;s been there
             </span>
+            <h2 className="h-xl rv" style={{ margin: "0 0 20px" }}>
+              I went from 559 to 716 in 30 days.{" "}
+              <em className="proof-i">Here&apos;s what I learned.</em>
+            </h2>
             <blockquote className="f-quote rv d1">
-              &ldquo;I didn&apos;t even know you could challenge anything. Then I sent one round of dispute letters.&rdquo;
+              &ldquo;Nobody told me you could actually challenge this stuff. I figured it out the hard way — then I built the system I wish I&apos;d had.&rdquo;
             </blockquote>
             <div className="score-proof rv d2">
               <span className="sp-n sp-before">559</span>
@@ -33,12 +39,12 @@ export default function Founder() {
               </div>
             </div>
             <p className="body-lg rv d3" style={{ marginBottom: "14px" }}>
-              Not a bump. Not a trick. It stayed.
+              I&apos;m Jason. I built ScoreVera after disputing my own credit report and realizing the whole process was completely backwards for regular people. The information exists — it&apos;s buried in federal law — but nobody explains it in plain English or tells you what to actually do next.
             </p>
             <p className="body-lg rv d3">
-              Most people fail because they send the wrong letters, at the wrong time, or stop too early.{" "}
+              I spent months learning it the hard way. Then I turned it into a system.{" "}
               <strong style={{ color: "var(--t1)" }}>
-                ScoreVera turns that process into a system you can follow.
+                ScoreVera is what I built so you don&apos;t have to go through what I did.
               </strong>
             </p>
             <div className="info-band rv d4">
@@ -54,8 +60,7 @@ export default function Founder() {
                 <path d="M8 7v4M8 5v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
               <p className="info-text">
-                ScoreVera is software, not a credit repair service. You run your own process — we give you
-                the right tools.
+                ScoreVera is software, not a credit repair service. You run your own process — we give you the right tools and the right order to use them.
               </p>
             </div>
           </div>
