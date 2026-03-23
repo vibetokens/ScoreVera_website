@@ -66,7 +66,7 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="plans" style={{ maxWidth: "680px", margin: "0 auto" }}>
+        <div className="plans plans-duo">
           {plans.map((plan) => (
             <div
               className={`plan rv${plan.delay ? ` ${plan.delay}` : ""}${plan.featured ? " feat" : ""}`}

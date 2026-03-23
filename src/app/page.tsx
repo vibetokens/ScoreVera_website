@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import BureauStrip from "@/components/BureauStrip";
-import Founder from "@/components/Founder";
+import ProofStrip from "@/components/ProofStrip";
 import Pillars from "@/components/Pillars";
 import HowItWorks from "@/components/HowItWorks";
 import Objections from "@/components/Objections";
@@ -20,7 +20,7 @@ export default function Home() {
       <main>
         <Hero />
         <BureauStrip />
-        <Founder />
+        <ProofStrip />
         <Pillars />
         <HowItWorks />
         <Pricing />

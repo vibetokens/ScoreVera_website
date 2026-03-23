@@ -490,3 +490,30 @@ img.logo-img{height:32px!important;max-height:32px!important;width:auto!importan
 /* ===== BLOG SIDEBAR ===== */
 @media(max-width:899px){.blog-sidebar{display:none!important}}
 
+/* ===== PROOF STRIP ===== */
+#proof{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+@media(min-width:768px){.proof-grid{grid-template-columns:repeat(4,1fr)}}
+.proof-cell{background:var(--surface);padding:36px 20px;text-align:center;transition:background .2s}
+@media(min-width:640px){.proof-cell{padding:44px 28px}}
+@media(min-width:1024px){.proof-cell{padding:52px 36px}}
+.proof-cell:hover{background:var(--elevated)}
+.proof-n{font-family:var(--f-d);font-size:clamp(2.25rem,5vw,3.25rem);font-weight:600;line-height:1;letter-spacing:-.035em;color:var(--t1);display:flex;align-items:baseline;justify-content:center;gap:1px;margin-bottom:12px}
+.pn-gold{color:var(--gold)}
+.proof-unit{font-size:.55em;font-weight:500}
+.proof-label{font-size:.8125rem;color:var(--t2);line-height:1.55;margin-bottom:8px;max-width:160px;margin-left:auto;margin-right:auto}
+.proof-src{font-family:var(--f-m);font-size:.5rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase}
+@media(max-width:767px){
+  .proof-cell{padding:28px 14px}
+  .proof-label{font-size:.75rem}
+}
+
+/* ===== PLANS DUO — 2-column pricing layout ===== */
+.plans-duo{max-width:700px;margin-left:auto!important;margin-right:auto!important}
+@media(min-width:640px){.plans-duo{grid-template-columns:1fr 1fr!important}}
+@media(min-width:1024px){.plans-duo{grid-template-columns:1fr 1fr!important}}
+
+/* Featured plan — stronger visual weight */
+.plan.feat{border-color:rgba(59,130,246,.4);box-shadow:0 0 0 1px rgba(59,130,246,.18),0 24px 60px rgba(59,130,246,.10)}
+.plan.feat:hover{border-color:rgba(59,130,246,.6)}
+
