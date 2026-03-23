@@ -7,12 +7,12 @@ export default function FinalCTA() {
             Start Now
           </span>
           <h2 className="h-xl rv" style={{ margin: "18px 0" }}>
-            You already have the report.
+            Every month your score stays low
             <br />
-            <em className="proof-i">Now run it like a system.</em>
+            <em className="proof-i">costs you in higher interest.</em>
           </h2>
-          <p className="body-lg rv d1" style={{ maxWidth: "460px", margin: "0 auto" }}>
-            No downloads. No guesswork. Log in, upload your report, and follow the process correctly.
+          <p className="body-lg rv d1" style={{ maxWidth: "480px", margin: "0 auto" }}>
+            Upload your report. See what is dragging your score down. Generate your first dispute letter in under 20 minutes — free, no credit card required.
           </p>
           <div className="cta-acts rv d2">
             <a href="https://app.scorevera.com/" className="btn btn-p">
@@ -32,11 +32,11 @@ export default function FinalCTA() {
             </a>
           </div>
           <div className="cta-micro rv d3">
+            <span>Free to analyze</span>
+            <span>·</span>
             <span>No install</span>
             <span>·</span>
-            <span>Cancel anytime</span>
-            <span>·</span>
-            <span>Browser-based</span>
+            <span>Results in 30 days</span>
           </div>
         </div>
       </div>

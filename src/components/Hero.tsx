@@ -184,7 +184,7 @@ export default function Hero() {
               <em className="proof-i">your credit.</em>
             </h1>
             <p className="body-lg hero-sub rv d1">
-              Most people have no idea what&apos;s actually dragging their score down — or that they have the legal right to challenge it. ScoreVera shows you exactly what to do, step by step.
+              1 in 5 Americans has a credit report error significant enough to affect their score. ScoreVera identifies yours and generates FCRA-compliant dispute letters in minutes — no lawyer, no credit repair company needed.
             </p>
             <div className="hero-acts btn-stack rv d2">
               <a href="https://app.scorevera.com/" className="btn btn-p">
