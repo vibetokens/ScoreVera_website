@@ -25,6 +25,11 @@ function assignAuthor(slug: string): Author {
   return AUTHORS[hash % AUTHORS.length]
 }
 
+export interface FaqItem {
+  q: string
+  a: string
+}
+
 export interface Post {
   title: string
   slug: string
@@ -38,6 +43,7 @@ export interface Post {
   notionId: string
   content: string
   author: Author
+  faq?: FaqItem[]
 }
 
 function estimateReadTime(content: string): string {

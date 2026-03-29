@@ -5,6 +5,12 @@ import Footer from "@/components/Footer"
 import { getAllPosts, getPostBySlug } from "@/lib/blog"
 import { MDXRemote } from "next-mdx-remote/rsc"
 
+function getRelatedPosts(currentSlug: string, category: string, count = 3) {
+  return getAllPosts()
+    .filter(p => p.category === category && p.slug !== currentSlug)
+    .slice(0, count)
+}
+
 const CAT_COLOR: Record<string, string> = {
   "dispute-process": "var(--blue)",
   "credit-report-errors": "var(--gold)",
@@ -51,6 +57,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const categoryColor = CAT_COLOR[post.category] || "var(--gold)"
   const categoryBg = CAT_BG[post.category] || "rgba(201,165,90,0.12)"
   const categoryLabel = CAT_LABEL[post.category] || post.category
+  const related = getRelatedPosts(slug, post.category)
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -58,10 +65,32 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     headline: post.title,
     description: post.excerpt,
     author: { "@type": "Person", name: post.author.name },
-    publisher: { "@type": "Organization", name: "ScoreVera" },
+    publisher: { "@type": "Organization", name: "ScoreVera", url: "https://scorevera.com" },
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `https://scorevera.com/blog/${post.slug}` },
   }
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://scorevera.com" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://scorevera.com/blog" },
+      { "@type": "ListItem", position: 3, name: categoryLabel, item: `https://scorevera.com/blog/category/${post.category}` },
+      { "@type": "ListItem", position: 4, name: post.title, item: `https://scorevera.com/blog/${post.slug}` },
+    ],
+  }
+
+  const faqSchema = post.faq && post.faq.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: post.faq.map(item => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  } : null
 
   return (
     <>
@@ -71,6 +100,16 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+        {faqSchema && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          />
+        )}
 
         <div style={{ paddingTop:"80px", paddingBottom:"80px" }}>
           <div className="wrap">
@@ -208,6 +247,44 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
           </div>
         </div>
+        {/* Related Posts */}
+        {related.length > 0 && (
+          <section style={{ borderTop: "1px solid var(--border)", padding: "56px 0" }}>
+            <div className="wrap">
+              <div style={{ maxWidth: "1080px", margin: "0 auto" }}>
+                <div style={{ fontFamily: "var(--f-m)", fontSize: ".5625rem", color: "var(--t3)", letterSpacing: ".14em", textTransform: "uppercase", marginBottom: "20px" }}>
+                  More from {categoryLabel}
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: "16px" }}>
+                  {related.map(p => (
+                    <a key={p.slug} href={`/blog/${p.slug}`} style={{
+                      display: "flex", flexDirection: "column", gap: "8px",
+                      background: "var(--elevated)", border: "1px solid var(--border)",
+                      borderRadius: "12px", padding: "20px", textDecoration: "none",
+                    }}>
+                      <span style={{
+                        display: "inline-flex", padding: "3px 10px", borderRadius: "20px",
+                        background: CAT_BG[p.category] || "rgba(201,165,90,0.12)",
+                        color: CAT_COLOR[p.category] || "var(--gold)",
+                        fontFamily: "var(--f-m)", fontSize: ".5625rem", letterSpacing: ".1em", textTransform: "uppercase",
+                        alignSelf: "flex-start",
+                      }}>
+                        {CAT_LABEL[p.category] || p.category}
+                      </span>
+                      <div style={{ fontFamily: "var(--f-d)", fontSize: "1rem", color: "var(--t1)", lineHeight: "1.3", letterSpacing: "-.01em" }}>
+                        {p.title}
+                      </div>
+                      <div style={{ fontSize: ".8125rem", color: "var(--t3)", lineHeight: "1.5", flex: 1 }}>{p.excerpt}</div>
+                      <span style={{ fontFamily: "var(--f-m)", fontSize: ".6875rem", color: categoryColor, marginTop: "4px" }}>
+                        Read guide →
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
       </main>
       <Footer />
     </>
