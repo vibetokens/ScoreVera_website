@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 const LOGO = "/images/scorevera-logo.png";
 
@@ -275,8 +276,8 @@ export default function Header() {
 
             {/* Right side */}
             <div className="nav-right">
-              <a href="https://app.scorevera.com/login" className="nav-login">Log In</a>
-              <a href="https://app.scorevera.com/" className="btn btn-p nav-cta">Get Started</a>
+              <a href="https://app.scorevera.com/login" className="nav-login" onClick={() => trackEvent("cta_click", { location: "header", text: "Log In" })}>Log In</a>
+              <a href="https://app.scorevera.com/" className="btn btn-p nav-cta" onClick={() => trackEvent("cta_click", { location: "header", text: "Get Started" })}>Get Started</a>
               <button
                 className={`hbg${drawerOpen ? " open" : ""}`}
                 onClick={() => setDrawerOpen(!drawerOpen)}
@@ -359,10 +360,10 @@ export default function Header() {
         ))}
 
         <div className="drawer-ctas">
-          <a href="https://app.scorevera.com/login" className="btn btn-g" onClick={closeAll}>
+          <a href="https://app.scorevera.com/login" className="btn btn-g" onClick={() => { closeAll(); trackEvent("cta_click", { location: "header_mobile", text: "Log In" }); }}>
             Log In
           </a>
-          <a href="https://app.scorevera.com/" className="btn btn-p" onClick={closeAll}>
+          <a href="https://app.scorevera.com/" className="btn btn-p" onClick={() => { closeAll(); trackEvent("cta_click", { location: "header_mobile", text: "Get Started Free" }); }}>
             Get Started Free
           </a>
         </div>

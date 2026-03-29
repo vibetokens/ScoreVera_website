@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -187,13 +188,23 @@ export default function Hero() {
               1 in 5 Americans has a credit report error significant enough to affect their score. ScoreVera identifies yours and generates FCRA-compliant dispute letters in minutes — no lawyer, no credit repair company needed.
             </p>
             <div className="hero-acts btn-stack rv d2">
-              <a href="https://app.scorevera.com/" className="btn btn-p">
+              <a
+                href="https://app.scorevera.com/"
+                className="btn btn-p"
+                onClick={() => trackEvent("cta_click", { location: "hero", text: "Upload Your Report" })}
+              >
                 Upload Your Report{" "}
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                   <path d="M7 1.5L12.5 7L7 12.5M1.5 7h11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </a>
-              <a href="#how" className="btn btn-g">See How It Works</a>
+              <a
+                href="#how"
+                className="btn btn-g"
+                onClick={() => trackEvent("cta_click", { location: "hero", text: "See How It Works" })}
+              >
+                See How It Works
+              </a>
             </div>
             <div className="hero-trust rv d3">
               <span className="trust-dot" />

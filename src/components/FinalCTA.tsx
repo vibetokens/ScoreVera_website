@@ -1,3 +1,7 @@
+"use client";
+
+import { trackEvent } from "@/lib/analytics";
+
 export default function FinalCTA() {
   return (
     <section id="cta" className="section">
@@ -15,7 +19,11 @@ export default function FinalCTA() {
             Upload your report. See what is dragging your score down. Generate your first dispute letter in under 20 minutes — free, no credit card required.
           </p>
           <div className="cta-acts rv d2">
-            <a href="https://app.scorevera.com/" className="btn btn-p">
+            <a
+              href="https://app.scorevera.com/"
+              className="btn btn-p"
+              onClick={() => trackEvent("cta_click", { location: "final_cta", text: "Upload Your Report" })}
+            >
               Upload Your Report{" "}
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path
@@ -27,7 +35,11 @@ export default function FinalCTA() {
                 />
               </svg>
             </a>
-            <a href="#how" className="btn btn-g">
+            <a
+              href="#how"
+              className="btn btn-g"
+              onClick={() => trackEvent("cta_click", { location: "final_cta", text: "See How It Works" })}
+            >
               See How It Works
             </a>
           </div>

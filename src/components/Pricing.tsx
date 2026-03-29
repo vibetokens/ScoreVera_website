@@ -1,3 +1,7 @@
+"use client";
+
+import { trackEvent } from "@/lib/analytics";
+
 const checkIcon = (
   <svg className="pf-ok" viewBox="0 0 15 15" fill="none">
     <path d="M2.5 7.5l4 4 6-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -106,7 +110,11 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              <a href="https://app.scorevera.com/" className={plan.btnClass}>
+              <a
+                href="https://app.scorevera.com/"
+                className={plan.btnClass}
+                onClick={() => trackEvent("cta_click", { location: `pricing_${plan.name.toLowerCase()}`, text: plan.btnText })}
+              >
                 {plan.btnText}
               </a>
             </div>

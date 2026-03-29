@@ -1,6 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
+import ScrollTracker from "@/components/ScrollTracker";
 import "./globals.css";
+
+const GA_ID = "G-NHXN7WD7VP";
+const CLARITY_ID = "w3iwf1um0g";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -73,7 +79,30 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${fraunces.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable}`}>
+        {/* GA4 */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_ID}');
+        `}</Script>
+
+        {/* Microsoft Clarity */}
+        <Script id="clarity-init" strategy="afterInteractive">{`
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window,document,"clarity","script","${CLARITY_ID}");
+        `}</Script>
+
         {children}
+        <Analytics />
+        <ScrollTracker />
       </body>
     </html>
   );

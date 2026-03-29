@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 const subjects = ["General", "Support", "Press", "Partnership", "Other"];
 
@@ -49,6 +50,7 @@ export default function ContactForm() {
         setStatus("success");
         setStatusMsg(data.message || "Message sent!");
         setFields({ name: "", email: "", subject: "General", message: "" });
+        trackEvent("form_submit", { type: "contact" });
       } else {
         setStatus("error");
         setStatusMsg(data.error || "Something went wrong. Please try again.");
