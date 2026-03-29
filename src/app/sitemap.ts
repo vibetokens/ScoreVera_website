@@ -40,6 +40,8 @@ const STATIC_PAGES = [
   { path: "/blog/category/dispute-process", priority: 0.7, changefreq: "weekly" },
   { path: "/blog/category/credit-report-errors", priority: 0.7, changefreq: "weekly" },
   { path: "/blog/category/credit-score", priority: 0.7, changefreq: "weekly" },
+  { path: "/blog/category/state-guides", priority: 0.7, changefreq: "monthly" },
+  { path: "/glossary", priority: 0.7, changefreq: "monthly" },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

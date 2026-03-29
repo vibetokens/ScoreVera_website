@@ -53,7 +53,7 @@ function estimateReadTime(content: string): string {
 }
 
 export function getAllPosts(): Post[] {
-  const categories = ['dispute-process', 'credit-report-errors', 'credit-score']
+  const categories = ['dispute-process', 'credit-report-errors', 'credit-score', 'state-guides']
   const posts: Post[] = []
 
   for (const cat of categories) {

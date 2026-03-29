@@ -15,16 +15,19 @@ const CAT_COLOR: Record<string, string> = {
   "dispute-process": "var(--blue)",
   "credit-report-errors": "var(--gold)",
   "credit-score": "var(--green)",
+  "state-guides": "rgba(168,85,247,1)",
 }
 const CAT_BG: Record<string, string> = {
   "dispute-process": "rgba(59,130,246,0.12)",
   "credit-report-errors": "rgba(201,165,90,0.12)",
   "credit-score": "rgba(16,185,129,0.12)",
+  "state-guides": "rgba(168,85,247,0.12)",
 }
 const CAT_LABEL: Record<string, string> = {
   "dispute-process": "Dispute Process",
   "credit-report-errors": "Credit Report Errors",
   "credit-score": "Credit Score",
+  "state-guides": "State Guides",
 }
 
 export async function generateStaticParams() {
@@ -233,6 +236,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                       { label:"Dispute Process", href:"/blog/category/dispute-process", color:"var(--blue)" },
                       { label:"Credit Report Errors", href:"/blog/category/credit-report-errors", color:"var(--gold)" },
                       { label:"Credit Score", href:"/blog/category/credit-score", color:"var(--green)" },
+                      { label:"State Guides", href:"/blog/category/state-guides", color:"rgba(168,85,247,1)" },
                     ].map(c => (
                       <a key={c.href} href={c.href} style={{
                         display:"block", fontSize:".8125rem", color:c.color,
