@@ -85,6 +85,17 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     ],
   }
 
+  const speakableSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: post.title,
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", ".post-excerpt", ".post-body"],
+    },
+    url: `https://scorevera.com/blog/${post.slug}`,
+  }
+
   const faqSchema = post.faq && post.faq.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -106,6 +117,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }}
         />
         {faqSchema && (
           <script
@@ -147,7 +162,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   </h1>
 
                   {/* Excerpt */}
-                  <p style={{ fontSize:"1.0625rem", color:"var(--t2)", lineHeight:"1.7", marginBottom:"24px" }}>
+                  <p className="post-excerpt" style={{ fontSize:"1.0625rem", color:"var(--t2)", lineHeight:"1.7", marginBottom:"24px" }}>
                     {post.excerpt}
                   </p>
 
@@ -176,7 +191,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   </div>
 
                   {/* MDX Content */}
-                  <div style={{
+                  <div className="post-body" style={{
                     color:"var(--t2)", lineHeight:"1.8", fontSize:".9375rem",
                   }}>
                     <style>{`
