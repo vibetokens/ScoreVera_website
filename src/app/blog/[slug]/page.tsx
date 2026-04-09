@@ -134,7 +134,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <div style={{ display:"grid", gridTemplateColumns:"1fr", gap:"48px", maxWidth:"1080px", margin:"0 auto" }}>
 
               {/* On desktop, 2 cols: content + sidebar */}
-              <div style={{ display:"grid", gridTemplateColumns:"minmax(0,1fr) 280px", gap:"48px", alignItems:"start" }}>
+              <div className="blog-layout" style={{ display:"grid", gap:"48px", alignItems:"start" }}>
 
                 {/* Main content */}
                 <article>
